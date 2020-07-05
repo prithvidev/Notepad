@@ -5,6 +5,11 @@
  */
 package notepad;
 
+import java.awt.FileDialog;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
  * @author PrithviDevKumar
@@ -14,6 +19,7 @@ public class Notepad extends javax.swing.JFrame {
     /**
      * Creates new form Notepad
      */
+    String filename;
     public Notepad() {
         initComponents();
     }
@@ -78,6 +84,11 @@ public class Notepad extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         newFile.setText("New File");
+        newFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newFileActionPerformed(evt);
+            }
+        });
         jMenu1.add(newFile);
 
         openFile.setText("Open File");
@@ -97,6 +108,11 @@ public class Notepad extends javax.swing.JFrame {
         jMenu1.add(saveFile);
 
         exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
         jMenu1.add(exit);
 
         jMenuBar1.add(jMenu1);
@@ -131,12 +147,40 @@ public class Notepad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileActionPerformed
-        // TODO add your handling code here:
+        FileDialog file = new FileDialog(Notepad.this, "Open File", FileDialog.LOAD);
+        file.setVisible(true);
+        
+        if(file.getFile() != null){
+            filename = file.getDirectory() + file.getFile();
+            setTitle(filename);
+        }
+        try{
+            BufferedReader read = new BufferedReader(new FileReader(filename));
+            StringBuilder ss = new StringBuilder();
+            String line = null;
+            while((line = read.readLine()) !=  null){
+                ss.append(line + "\n");
+                text.setText(ss.toString());
+            }
+            read.close();
+        }
+        catch(IOException  e){
+            System.out.println("File Not Found");
+        }
     }//GEN-LAST:event_openFileActionPerformed
 
     private void saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_saveFileActionPerformed
+
+    private void newFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileActionPerformed
+        text.setText("");
+        setTitle(filename);
+    }//GEN-LAST:event_newFileActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
