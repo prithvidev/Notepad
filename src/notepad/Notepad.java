@@ -34,14 +34,14 @@ public class Notepad extends javax.swing.JFrame {
         text = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        newFile = new javax.swing.JMenuItem();
+        openFile = new javax.swing.JMenuItem();
+        saveFile = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        cut = new javax.swing.JMenuItem();
+        copy = new javax.swing.JMenuItem();
+        paste = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Notepad-Dev");
@@ -77,40 +77,40 @@ public class Notepad extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("New File");
-        jMenu1.add(jMenuItem1);
+        newFile.setText("New File");
+        jMenu1.add(newFile);
 
-        jMenuItem2.setText("Open File");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        openFile.setText("Open File");
+        openFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                openFileActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(openFile);
 
-        jMenuItem3.setText("Save File");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        saveFile.setText("Save File");
+        saveFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                saveFileActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(saveFile);
 
-        jMenuItem4.setText("Exit");
-        jMenu1.add(jMenuItem4);
+        exit.setText("Exit");
+        jMenu1.add(exit);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
-        jMenuItem5.setText("Cut");
-        jMenu2.add(jMenuItem5);
+        cut.setText("Cut");
+        jMenu2.add(cut);
 
-        jMenuItem6.setText("Copy");
-        jMenu2.add(jMenuItem6);
+        copy.setText("Copy");
+        jMenu2.add(copy);
 
-        jMenuItem7.setText("Paste");
-        jMenu2.add(jMenuItem7);
+        paste.setText("Paste");
+        jMenu2.add(paste);
 
         jMenuBar1.add(jMenu2);
 
@@ -130,13 +130,13 @@ public class Notepad extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void openFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_openFileActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFileActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_saveFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,19 +174,19 @@ public class Notepad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem copy;
+    private javax.swing.JMenuItem cut;
+    private javax.swing.JMenuItem exit;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem newFile;
+    private javax.swing.JMenuItem openFile;
+    private javax.swing.JMenuItem paste;
+    private javax.swing.JMenuItem saveFile;
     private javax.swing.JTextField search;
     private javax.swing.JTextArea text;
     // End of variables declaration//GEN-END:variables
