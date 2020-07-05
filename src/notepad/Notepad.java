@@ -7,7 +7,9 @@ package notepad;
 
 import java.awt.FileDialog;
 import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -134,9 +136,19 @@ public class Notepad extends javax.swing.JFrame {
         jMenu2.add(cut);
 
         copy.setText("Copy");
+        copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyActionPerformed(evt);
+            }
+        });
         jMenu2.add(copy);
 
         paste.setText("Paste");
+        paste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pasteActionPerformed(evt);
+            }
+        });
         jMenu2.add(paste);
 
         wrap.setText("Word Wrap");
@@ -268,6 +280,23 @@ public class Notepad extends javax.swing.JFrame {
         clipboard.setContents(cuts, cuts);
         text.replaceRange("", text.getSelectionStart(), text.getSelectionEnd());
     }//GEN-LAST:event_cutActionPerformed
+
+    private void pasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasteActionPerformed
+        try{
+            Transferable paste = clipboard.getContents(Notepad.this);
+            String sel = (String) paste.getTransferData(DataFlavor.stringFlavor);
+            text.replaceRange(sel, text.getSelectionStart(), text.getSelectionEnd());
+        }
+        catch(Exception e){
+            System.out.println("Didn't work");
+        }
+    }//GEN-LAST:event_pasteActionPerformed
+
+    private void copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyActionPerformed
+        String copy = text.getSelectedText();
+        StringSelection copys = new StringSelection(copy);
+        clipboard.setContents(copys, copys);
+    }//GEN-LAST:event_copyActionPerformed
 
     /**
      * @param args the command line arguments
