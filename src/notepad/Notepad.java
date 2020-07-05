@@ -5,6 +5,8 @@
  */
 package notepad;
 
+import static java.awt.AWTEventMulticaster.remove;
+import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -14,6 +16,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -62,6 +68,11 @@ public class Notepad extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(700, 700));
 
         jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         text.setColumns(20);
         text.setRows(5);
@@ -298,6 +309,44 @@ public class Notepad extends javax.swing.JFrame {
         clipboard.setContents(copys, copys);
     }//GEN-LAST:event_copyActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        searchtext(text, search.getText());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    class MyHighlighter extends DefaultHighlighter.DefaultHighlightPainter{
+        public MyHighlighter(Color color){
+            super(color);
+        }
+    }
+    
+    DefaultHighlighter.HighlightPainter high = new MyHighlighter(Color.YELLOW);
+    
+    public void removehighlight(JTextComponent textcomp){
+        Highlighter removehighlighter = textcomp.getHighlighter();
+        Highlighter.Highlight[] remove = removehighlighter.getHighlights();
+        
+        for(int i=0; i<remove.length; i++){
+            if(remove[i].getPainter() instanceof MyHighlighter){
+                removehighlighter.removeHighlight(remove[i]);
+        }
+        }
+    }
+    
+    public void searchtext(JTextComponent textcomp, String texts){
+        removehighlight(textcomp);
+        try{
+             Highlighter highlight = textcomp.getHighlighter();
+             Document doc = textcomp.getDocument();
+             String t = doc.getText(0 , doc.getLength());
+             int pos = 0;
+             while((pos = t.toUpperCase().indexOf(texts.toUpperCase(),pos)) >= 0)
+             {
+                 highlight.addHighlight(pos, pos+texts.length(), high);
+                 pos += texts.length();
+             }
+        }
+        catch(Exception e){}
+    }
     /**
      * @param args the command line arguments
      */
