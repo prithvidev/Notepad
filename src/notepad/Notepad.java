@@ -49,6 +49,8 @@ public class Notepad extends javax.swing.JFrame {
         cut = new javax.swing.JMenuItem();
         copy = new javax.swing.JMenuItem();
         paste = new javax.swing.JMenuItem();
+        wrap = new javax.swing.JMenuItem();
+        normalView = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Notepad-Dev");
@@ -129,6 +131,38 @@ public class Notepad extends javax.swing.JFrame {
         paste.setText("Paste");
         jMenu2.add(paste);
 
+        wrap.setText("Word Wrap");
+        wrap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                wrapMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                wrapMouseReleased(evt);
+            }
+        });
+        wrap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wrapActionPerformed(evt);
+            }
+        });
+        jMenu2.add(wrap);
+
+        normalView.setText("Normal View");
+        normalView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                normalViewMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                normalViewMouseReleased(evt);
+            }
+        });
+        normalView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                normalViewActionPerformed(evt);
+            }
+        });
+        jMenu2.add(normalView);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -194,6 +228,32 @@ public class Notepad extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
+    private void wrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wrapActionPerformed
+        text.setLineWrap(true);
+        text.setWrapStyleWord(true);
+    }//GEN-LAST:event_wrapActionPerformed
+
+    private void wrapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrapMouseClicked
+        
+    }//GEN-LAST:event_wrapMouseClicked
+
+    private void wrapMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wrapMouseReleased
+       
+    }//GEN-LAST:event_wrapMouseReleased
+
+    private void normalViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_normalViewMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_normalViewMouseClicked
+
+    private void normalViewMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_normalViewMouseReleased
+            text.setLineWrap(false);
+            text.setWrapStyleWord(false);
+    }//GEN-LAST:event_normalViewMouseReleased
+
+    private void normalViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalViewActionPerformed
+        
+    }//GEN-LAST:event_normalViewActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,10 +300,12 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem newFile;
+    private javax.swing.JMenuItem normalView;
     private javax.swing.JMenuItem openFile;
     private javax.swing.JMenuItem paste;
     private javax.swing.JMenuItem saveFile;
     private javax.swing.JTextField search;
     private javax.swing.JTextArea text;
+    private javax.swing.JMenuItem wrap;
     // End of variables declaration//GEN-END:variables
 }
