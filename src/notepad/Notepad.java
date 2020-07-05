@@ -6,6 +6,8 @@
 package notepad;
 
 import java.awt.FileDialog;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,6 +23,7 @@ public class Notepad extends javax.swing.JFrame {
      * Creates new form Notepad
      */
     String filename;
+    Clipboard clipboard = getToolkit().getSystemClipboard();
     public Notepad() {
         initComponents();
     }
@@ -123,6 +126,11 @@ public class Notepad extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         cut.setText("Cut");
+        cut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cutActionPerformed(evt);
+            }
+        });
         jMenu2.add(cut);
 
         copy.setText("Copy");
@@ -246,13 +254,20 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_normalViewMouseClicked
 
     private void normalViewMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_normalViewMouseReleased
-            text.setLineWrap(false);
-            text.setWrapStyleWord(false);
+            
     }//GEN-LAST:event_normalViewMouseReleased
 
     private void normalViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_normalViewActionPerformed
-        
+        text.setLineWrap(false);
+        text.setWrapStyleWord(false);
     }//GEN-LAST:event_normalViewActionPerformed
+
+    private void cutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutActionPerformed
+        String cut = text.getSelectedText();
+        StringSelection cuts = new StringSelection(cut);
+        clipboard.setContents(cuts, cuts);
+        text.replaceRange("", text.getSelectionStart(), text.getSelectionEnd());
+    }//GEN-LAST:event_cutActionPerformed
 
     /**
      * @param args the command line arguments
