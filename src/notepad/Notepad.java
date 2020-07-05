@@ -191,7 +191,7 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_newFileActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_exitActionPerformed
 
     /**
