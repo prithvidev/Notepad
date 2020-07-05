@@ -8,6 +8,7 @@ package notepad;
 import java.awt.FileDialog;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -170,7 +171,18 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileActionPerformed
 
     private void saveFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveFileActionPerformed
-        // TODO add your handling code here:
+        FileDialog file = new FileDialog(Notepad.this,"Save File", FileDialog.SAVE);
+        file.setVisible(true);
+        if((file.getFile()) != null){
+            filename = file.getDirectory() + file.getFile();
+            setTitle(filename);
+        }
+        try{
+            FileWriter ff = new FileWriter(filename);
+            ff.write(text.getText());
+            setTitle(filename);
+            ff.close();
+        }catch(IOException e){System.out.println("File not found");}
     }//GEN-LAST:event_saveFileActionPerformed
 
     private void newFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileActionPerformed
