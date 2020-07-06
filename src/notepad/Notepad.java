@@ -310,7 +310,10 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_copyActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        searchtext(text, search.getText());
+        String ss = search.getText();
+        if(!ss.isEmpty()){
+        searchtext(text, search.getText());}
+        else{removehighlight(text);}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     class MyHighlighter extends DefaultHighlighter.DefaultHighlightPainter{
