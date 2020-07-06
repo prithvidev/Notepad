@@ -5,6 +5,7 @@
  */
 package notepad;
 
+import com.ozten.font.JFontChooser;
 import static java.awt.AWTEventMulticaster.remove;
 import java.awt.Color;
 import java.awt.FileDialog;
@@ -17,7 +18,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import static javafx.application.ConditionalFeature.SWT;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
@@ -58,6 +61,7 @@ public class Notepad extends javax.swing.JFrame {
         newFile = new javax.swing.JMenuItem();
         openFile = new javax.swing.JMenuItem();
         saveFile = new javax.swing.JMenuItem();
+        printFile = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         cut = new javax.swing.JMenuItem();
@@ -66,6 +70,7 @@ public class Notepad extends javax.swing.JFrame {
         wrap = new javax.swing.JMenuItem();
         normalView = new javax.swing.JMenuItem();
         fontColor = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Notepad-Dev");
@@ -141,6 +146,10 @@ public class Notepad extends javax.swing.JFrame {
             }
         });
         jMenu1.add(saveFile);
+
+        printFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        printFile.setText("Print");
+        jMenu1.add(printFile);
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exit.setText("Exit");
@@ -229,6 +238,14 @@ public class Notepad extends javax.swing.JFrame {
             }
         });
         jMenu2.add(fontColor);
+
+        jMenuItem1.setText("Font");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
@@ -371,6 +388,12 @@ public class Notepad extends javax.swing.JFrame {
         
     }//GEN-LAST:event_newFileMenuKeyPressed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JFontChooser fontChooser = new JFontChooser();
+        JOptionPane.showMessageDialog(this,fontChooser, "Edit Font",JOptionPane.PLAIN_MESSAGE);
+        text.setFont(fontChooser.getPreviewFont());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     class MyHighlighter extends DefaultHighlighter.DefaultHighlightPainter{
         public MyHighlighter(Color color){
             super(color);
@@ -449,12 +472,14 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem newFile;
     private javax.swing.JMenuItem normalView;
     private javax.swing.JMenuItem openFile;
     private javax.swing.JMenuItem paste;
+    private javax.swing.JMenuItem printFile;
     private javax.swing.JMenuItem saveFile;
     private javax.swing.JTextField search;
     private javax.swing.JTextArea text;
