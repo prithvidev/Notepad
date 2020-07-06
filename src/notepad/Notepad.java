@@ -14,6 +14,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import static java.awt.event.InputEvent.CTRL_DOWN_MASK;
+import java.awt.print.PrinterException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -149,6 +150,11 @@ public class Notepad extends javax.swing.JFrame {
 
         printFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         printFile.setText("Print");
+        printFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printFileActionPerformed(evt);
+            }
+        });
         jMenu1.add(printFile);
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
@@ -393,6 +399,14 @@ public class Notepad extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,fontChooser, "Edit Font",JOptionPane.PLAIN_MESSAGE);
         text.setFont(fontChooser.getPreviewFont());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void printFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printFileActionPerformed
+        try {
+            text.print();        // TODO add your handling code here:
+        } catch (PrinterException ex) {
+            System.out.println("Some Issue while printing");
+        }
+    }//GEN-LAST:event_printFileActionPerformed
 
     class MyHighlighter extends DefaultHighlighter.DefaultHighlightPainter{
         public MyHighlighter(Color color){
