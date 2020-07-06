@@ -12,10 +12,13 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import static java.awt.event.InputEvent.CTRL_DOWN_MASK;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JColorChooser;
+import javax.swing.KeyStroke;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
@@ -62,6 +65,7 @@ public class Notepad extends javax.swing.JFrame {
         paste = new javax.swing.JMenuItem();
         wrap = new javax.swing.JMenuItem();
         normalView = new javax.swing.JMenuItem();
+        fontColor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Notepad-Dev");
@@ -102,7 +106,17 @@ public class Notepad extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        newFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newFile.setText("New File");
+        newFile.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+                newFileMenuKeyPressed(evt);
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
+            }
+        });
         newFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newFileActionPerformed(evt);
@@ -110,6 +124,7 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu1.add(newFile);
 
+        openFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         openFile.setText("Open File");
         openFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +133,7 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu1.add(openFile);
 
+        saveFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveFile.setText("Save File");
         saveFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +142,7 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu1.add(saveFile);
 
+        exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +155,7 @@ public class Notepad extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
+        cut.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         cut.setText("Cut");
         cut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +164,7 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu2.add(cut);
 
+        copy.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         copy.setText("Copy");
         copy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +173,7 @@ public class Notepad extends javax.swing.JFrame {
         });
         jMenu2.add(copy);
 
+        paste.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         paste.setText("Paste");
         paste.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +213,22 @@ public class Notepad extends javax.swing.JFrame {
             }
         });
         jMenu2.add(normalView);
+
+        fontColor.setText("font color");
+        fontColor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fontColorMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                fontColorMouseReleased(evt);
+            }
+        });
+        fontColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontColorActionPerformed(evt);
+            }
+        });
+        jMenu2.add(fontColor);
 
         jMenuBar1.add(jMenu2);
 
@@ -251,6 +287,7 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_saveFileActionPerformed
 
     private void newFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileActionPerformed
+        newFile.setAccelerator(KeyStroke.getKeyStroke('n', CTRL_DOWN_MASK));
         text.setText("");
         setTitle(filename);
     }//GEN-LAST:event_newFileActionPerformed
@@ -315,6 +352,24 @@ public class Notepad extends javax.swing.JFrame {
         searchtext(text, search.getText());}
         else{removehighlight(text);}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void fontColorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fontColorMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fontColorMouseClicked
+
+    private void fontColorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fontColorMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fontColorMouseReleased
+
+    private void fontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontColorActionPerformed
+        Color color = JColorChooser.showDialog(this, "Choose Font Color", Color.yellow);
+        text.setForeground(color);
+        System.out.println("Choosen color is:" + color);
+    }//GEN-LAST:event_fontColorActionPerformed
+
+    private void newFileMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_newFileMenuKeyPressed
+        
+    }//GEN-LAST:event_newFileMenuKeyPressed
 
     class MyHighlighter extends DefaultHighlighter.DefaultHighlightPainter{
         public MyHighlighter(Color color){
@@ -389,6 +444,7 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JMenuItem copy;
     private javax.swing.JMenuItem cut;
     private javax.swing.JMenuItem exit;
+    private javax.swing.JMenuItem fontColor;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
